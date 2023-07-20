@@ -4,10 +4,14 @@ FROM node:14
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the application files from the host into the container's /app directory
-COPY user-ui/src/app.js /app/
-# Install dependencies (if your app requires any, adjust accordingly)
-# RUN npm install
+# Copy the package.json and package-lock.json files to install dependencies
+COPY user-ui/package*.json /app/
 
-# Specify the command to run your application
-CMD ["node", "app.js"]
+# Install project dependencies
+RUN npm install
+
+# Copy the entire user-ui directory to the container's /app directory
+COPY user-ui /app/user-ui
+
+# Specify the command to run your React app
+CMD ["npm", "start"]
