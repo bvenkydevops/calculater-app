@@ -5,7 +5,7 @@ FROM node:14
 WORKDIR /app
 
 # Copy the application files into the /app directory inside the container
-COPY app.js /app/
+COPY /var/lib/jenkins/workspace/calculator-app-jenkins/user-ui/src/app.js /app/
 
 # Install dependencies (if your app requires any)
 # RUN npm install
